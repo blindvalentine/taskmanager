@@ -75,7 +75,7 @@ userSchema.methods.toJSON = function(){        //toJSON is always executed befor
 
 userSchema.methods.generateAuthToken = async function(){
   const user = this;
-  const token = jwt.sign({_id: user._id.toString()}, 'thisisatoken');
+  const token = jwt.sign({_id: user._id.toString()}, process.env.JWT_SECRET);
   user.tokens = user.tokens.concat({token});   //concat a string to tokens array in user model
   await user.save();
   return token;

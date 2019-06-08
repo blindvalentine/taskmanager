@@ -69,7 +69,11 @@ router.post('/users/logoutAll', auth, async(req,res)=>{
 })
 
 router.get('/users/me', auth, async (req, res)=>{
-  res.send(req.user);
+  try{
+    res.send(req.user);
+  }catch(e){
+    res.send(e);
+  }
 })
 
 // router.get('/users/:id', async (req, res)=>{        //using route parameters
